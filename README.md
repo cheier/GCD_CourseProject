@@ -51,14 +51,96 @@ This function contains multiple components.
 + Data loading: Reads in all text data from the file system into memory.
 + Reshaping and merging: Manipulates the data into a final tidy data set.
 + Averaging: Creates the final tidy data set required for the project.
++ Write out: Writes the tidy data to disk.
 
 Note that in the actual function, messages and comments are there to provide more information to whoever is using and analyzing the code. These will not be included in the breakdown in this README.
 
 ### Data Verification
-This part of the function confirms whether the UCI HAR Dataset folder exists. If it doesn't, then the required file will be downloaded and unzipped. 
+This part of the function confirms whether the UCI HAR Dataset folder exists. If it doesn't, then the required file will be downloaded and unzipped. While not an exhaustive test, it does cover most situations where the data may not be available. If there is an error in the actual data or missing files, delete or rename the "UCI HAR Dataset" folder in order to allow the verification code to download a fresh dataset.
 
         if(!file.exists("./UCI HAR Dataset")) {
                 download.file("http://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip", 
                               "temp.zip")
                 unzip("temp.zip")    
         }
+### Data Loading
+In this part of the process, all supporting data is loaded prior to the main data sets in order to aid in proper column labeling. The first files loaded are the *features* and *activity labels*.
+
+        features <- read.table("./UCI HAR Dataset/features.txt",
+                               colClasses = "character")
+        activityLabels <- read.table("./UCI HAR Dataset/activity_labels.txt",
+                                     colClasses = "character")
+
+The *Features* data is then modified in order to rename *meanFreq* to *mFreq* in order to prevent the *meanFreq* features from being picked up in a text based search. The use of all round brackets are also removed. These among dashes are illegal characters in R, however, with the curly brackets, column names will include "..." within them. By eliminating the brackets, the dots are limited to 1 where dashes exist. I considered this to be acceptable in the column naming.
+
+        features[,2] = gsub("meanFreq", "mFreq", features[,2])
+        features[,2] = gsub("[(][)]", "", features[,2])
+        
+The rest of the support data is then loaded as is. Column names are added to the *Subject* data. This name gets passed through to the final dataset. This is not done with the *Activities* data because the column names don't stick with future processing. They will be added later.
+        
+        testSubjects <- read.table("./UCI HAR Dataset/test/subject_test.txt",
+                                   colClasses = "numeric",
+                                   col.names = "Subject")
+        testActivities <- read.table("./UCI HAR Dataset/test/y_test.txt",
+                                     colClasses = "character")
+        trainSubjects <- read.table("./UCI HAR Dataset/train/subject_train.txt",
+                                    colClasses = "numeric",
+                                    col.names = "Subject")
+        trainActivities <- read.table("./UCI HAR Dataset/train/y_train.txt",
+                                     colClasses = "character")
+                                  
+The *Train* and *Test* data is then loaded using the *Features* data in order to append column names to the imported data.
+
+        testData <- read.table("./UCI HAR Dataset/test/X_test.txt",
+                               col.names = features[,2])
+        trainData <- read.table("./UCI HAR Dataset/train/X_train.txt",
+                                col.names = features[,2])
+
+### Reshaping and Merging
+This portion of the code is preparing all imported data for merging, as well as the final process of merging all data together within a tidy data set.
+
+The *Activities* data is converted to a factor using the activity labels. As the activities within the data only contain numbers, converting it to a factor allows all numbers to be descriptive labels within the data.
+
+        testActivities <- factor(testActivities[,1], 
+                                 labels = activityLabels[,2])
+        trainActivities <- factor(trainActivities[,1], 
+                                 labels = activityLabels[,2])
+                                 
+The *Test* and *Train* data is reduced in size. The use of grep() on the column portion of the data allows a search for the *mean* and *std* features to be pulled. This information is written back into the original variables, avoiding unnecessary additional data to be stored in memory.
+
+        trainData <- trainData[,c(grep("mean", features[,2]),
+                                  grep("std", features[,2]))]
+        testData <- testData[,c(grep("mean", features[,2]),
+                                grep("std", features[,2]))]
+
+The *Test* and *Tidy* data get the *Subject* and *Activity* data appended to the front. The *Activity* name is then added to the appropriate column. The resulting data is then merged together into *tidyData*. This final tidy data set is then organized according to the *Subject* ID.
+
+        testData <- cbind(testSubjects, testActivities, testData)
+        colnames(testData)[c(2)] <- "Activity"
+        trainData <- cbind(trainSubjects, trainActivities, trainData)
+        colnames(trainData)[c(2)] <- "Activity"
+        tidyData <- rbind(testData, trainData)
+        tidyData <- tidyData[order(tidyData$Subject),]
+
+### Averaging
+This encompases the final step in the project in which the average for each variable for each activity and each subject needs to be calculated. This process significantly reduces the size of the end data. As the *tidyData* contains time series data, *Activity* information repeats quite a bit in each *Subject*. Averaging this data will output a single value per *Feature* per *Activity* per *Subject*.
+
+The operating code creates a new *tidyMean* variable where the *tidyData* is melted from a wide set into a long set, including the ID variables for *Subject* and *Activity*. This intriduces a third and fourth column, *variables* and *value*. The *variables* column contains all of the *Features* from the data. The *value* is all of the rows for all of the *Features* contained per *Subject* and *Activity*. The data is then cast back into a wide format, executing a mean() on all of the *variables* that are part of *Subject* and *Activity*.
+
+        tidyMean <- melt(tidyData, id.vars=c("Subject", "Activity"))
+        tidyMean <- dcast(tidyMean, Subject + Activity ~ variable, mean)
+
+### Write Out
+In this case, I chose to write out both the tidy data and the averaged tidy data. I felt that there would be more value in using some of the tidy data for use in exploratory data analysis than the averaged data. To satisfy requirements for the project, the averaged data was written out as well.
+
+The default fot the write.table() function is to include row names in the output file. This breaks the data alignment in the actual file. These functions are written in order to create comma separated data with no row names.
+
+        write.table(tidyData, "tidyData.txt", sep=",", row.names = FALSE)
+        write.table(tidyMean, "tidyMean.txt", sep=",", row.names = FALSE)
+
+Reading In the Tidy Data
+------------------------
+For those who may be reviewing this assignment, the data was written out as a **.txt** file because a **.csv** file cannot be uploaded for the assignment. The above write.table() function does use comma separation, so the data can be read using the read.csv() function. Just a basic read will bring in the tidy data set with the required column names. You can use the following code to read and review the data output by run_analysis():
+
+        tidyData <- read.csv("tidyData.txt")
+        tidyMean <- read.csv("tidyMean.txt")
