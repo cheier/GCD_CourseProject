@@ -34,14 +34,12 @@ run_analysis <- function() {
                                    colClasses = "numeric",
                                    col.names = "Subject")
         testActivities <- read.table("./UCI HAR Dataset/test/y_test.txt",
-                                     colClasses = "character",
-                                     col.names = 'Activity')
+                                     colClasses = "character")
         trainSubjects <- read.table("./UCI HAR Dataset/train/subject_train.txt",
                                     colClasses = "numeric",
                                     col.names = "Subject")
         trainActivities <- read.table("./UCI HAR Dataset/train/y_train.txt",
-                                     colClasses = "character",
-                                     col.names = "Activity")
+                                     colClasses = "character")
                 
         message("Reading test dataset...")
         testData <- read.table("./UCI HAR Dataset/test/X_test.txt",
