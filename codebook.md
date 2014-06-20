@@ -6,13 +6,13 @@ Codebook
 
 + **Description**: Volunteer test subjects between the ages of 19 and 48.
 + **Value**: ID number assigned to inidividual volunteer
-+ **Data set** 
++ **Source Data Set** 
   + **Training**: Sourced from the training set of data. 70% of subjects were randomly selected for the training set.
   + **Test**: Sourced from the test set of data. The remainder 30% of subjects were assigned to this set.
 
 **Value range**: 1 to 30
 
-Value|Data set|Value|Data set|Value|Data set
+Value|Source Data Set|Value|Source Data Set|Value|Source Data Set
 ---|---|---|---|---|---
 1|Training|11|Training|21|Training
 2|Test|12|Test|22|Training
