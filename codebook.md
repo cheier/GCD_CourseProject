@@ -42,13 +42,13 @@ STANDING|Data gathered while standing
 LAYING |Data gathered while laying down
 
 **Processed Data Notes**
-*tidyMean.txt* will contain a single mean value for each activity per subject.
-*tidyData.txt* will contain the full gathered dataset. Activities will cover the full time series of the variables associated with them.
++ *tidyMean.txt* will contain a single mean value for each activity per subject.
++ *tidyData.txt* will contain the full gathered dataset. Activities will cover the full time series of the variables associated with them.
 
 ---
 ####tBodyAcc.mean.X
 
-+ **Description**: Mean variables from the time domain body acceleration data along the X axis of the accelerometer 
++ **Description**: Mean data gathered from the time domain body acceleration data along the X axis of the accelerometer 
 + **Type**: numeric
 + **Value**
   + **tidyData.txt**: Magnitude
@@ -59,44 +59,156 @@ LAYING |Data gathered while laying down
 ---
 ####tBodyAcc.mean.Y
 
++ **Description**: Mean data gathered from the time domain body acceleration data along the Y axis of the accelerometer 
++ **Type**: numeric
++ **Value**
+  + **tidyData.txt**: Magnitude
+  + **tidyMean.txt**: Average magnitude for activity
++ **Value Range**: -1:1 (normalized)
++ **Capture Frequency**: 50 Hz
+
 ---
 ####tBodyAcc.mean.Z
+
++ **Description**: Mean data gathered from the time domain body acceleration data along the Z axis of the accelerometer 
++ **Type**: numeric
++ **Value**
+  + **tidyData.txt**: Magnitude
+  + **tidyMean.txt**: Average magnitude for activity
++ **Value Range**: -1:1 (normalized)
++ **Capture Frequency**: 50 Hz
 
 ---
 ####tGravityAcc.mean.X
 
++ **Description**: Mean data gathered from the time domain gravity acceleration data along the X axis of the accelerometer 
++ **Type**: numeric
++ **Value**
+  + **tidyData.txt**: Magnitude
+  + **tidyMean.txt**: Average magnitude for activity
++ **Value Range**: -1:1 (normalized)
++ **Capture Frequency**: 50 Hz
+
 ---
 ####tGravityAcc.mean.Y
+
++ **Description**: Mean data gathered from the time domain gravity acceleration data along the Y axis of the accelerometer 
++ **Type**: numeric
++ **Value**
+  + **tidyData.txt**: Magnitude
+  + **tidyMean.txt**: Average magnitude for activity
++ **Value Range**: -1:1 (normalized)
++ **Capture Frequency**: 50 Hz
 
 ---
 ####tGravityAcc.mean.Z
 
++ **Description**: Mean data gathered from the time domain gravity acceleration data along the Z axis of the accelerometer 
++ **Type**: numeric
++ **Value**
+  + **tidyData.txt**: Magnitude
+  + **tidyMean.txt**: Average magnitude for activity
++ **Value Range**: -1:1 (normalized)
++ **Capture Frequency**: 50 Hz
+
 ---
 ####tBodyAccJerk.mean.X
+
++ **Description**: Mean data gathered from the jerk signal derived from time domain body acceleration data along the X axis of the accelerometer 
++ **Type**: numeric
++ **Value**
+  + **tidyData.txt**: Magnitude
+  + **tidyMean.txt**: Average magnitude for activity
++ **Value Range**: -1:1 (normalized)
++ **Capture Frequency**: 50 Hz
 
 ---
 ####tBodyAccJerk.mean.Y
 
++ **Description**: Mean data gathered from the jerk signal derived from time domain body acceleration data along the Y axis of the accelerometer 
++ **Type**: numeric
++ **Value**
+  + **tidyData.txt**: Magnitude
+  + **tidyMean.txt**: Average magnitude for activity
++ **Value Range**: -1:1 (normalized)
++ **Capture Frequency**: 50 Hz
+
 ---
 ####tBodyAccJerk.mean.Z
+
++ **Description**: Mean data gathered from the jerk signal derived from time domain body acceleration data along the Z axis of the accelerometer 
++ **Type**: numeric
++ **Value**
+  + **tidyData.txt**: Magnitude
+  + **tidyMean.txt**: Average magnitude for activity
++ **Value Range**: -1:1 (normalized)
++ **Capture Frequency**: 50 Hz
 
 ---
 ####tBodyGyro.mean.X
 
++ **Description**: Mean data gathered from the time domain body data along the X axis of the gyroscope 
++ **Type**: numeric
++ **Value**
+  + **tidyData.txt**: Magnitude
+  + **tidyMean.txt**: Average magnitude for activity
++ **Value Range**: -1:1 (normalized)
++ **Capture Frequency**: 50 Hz
+
 ---
 ####tBodyGyro.mean.Y
+
++ **Description**: Mean data gathered from the time domain body data along the Y axis of the gyroscope 
++ **Type**: numeric
++ **Value**
+  + **tidyData.txt**: Magnitude
+  + **tidyMean.txt**: Average magnitude for activity
++ **Value Range**: -1:1 (normalized)
++ **Capture Frequency**: 50 Hz
 
 ---
 ####tBodyGyro.mean.Z
 
++ **Description**: Mean data gathered from the time domain body data along the Z axis of the gyroscope 
++ **Type**: numeric
++ **Value**
+  + **tidyData.txt**: Magnitude
+  + **tidyMean.txt**: Average magnitude for activity
++ **Value Range**: -1:1 (normalized)
++ **Capture Frequency**: 50 Hz
+
 ---
 ####tBodyGyroJerk.mean.X
+
++ **Description**: Mean data gathered from the jerk signal derived from the time domain body data along the X axis of the gyroscope 
++ **Type**: numeric
++ **Value**
+  + **tidyData.txt**: Magnitude
+  + **tidyMean.txt**: Average magnitude for activity
++ **Value Range**: -1:1 (normalized)
++ **Capture Frequency**: 50 Hz
 
 ---
 ####tBodyGyroJerk.mean.Y
 
++ **Description**: Mean data gathered from the jerk signal derived from the time domain body data along the Y axis of the gyroscope 
++ **Type**: numeric
++ **Value**
+  + **tidyData.txt**: Magnitude
+  + **tidyMean.txt**: Average magnitude for activity
++ **Value Range**: -1:1 (normalized)
++ **Capture Frequency**: 50 Hz
+
 ---
 ####tBodyGyroJerk.mean.Z
+
++ **Description**: Mean data gathered from the jerk signal derived from the time domain body data along the Z axis of the gyroscope 
++ **Type**: numeric
++ **Value**
+  + **tidyData.txt**: Magnitude
+  + **tidyMean.txt**: Average magnitude for activity
++ **Value Range**: -1:1 (normalized)
++ **Capture Frequency**: 50 Hz
 
 ---
 ####tBodyAccMag.mean
