@@ -5,12 +5,12 @@ Codebook
 ####Subject
 
 + **Description**: Volunteer test subjects between the ages of 19 and 48.
++ **Type**: Numeric
 + **Value**: ID number assigned to inidividual volunteer
++ **Value range**: 1 to 30
 + **Source Data Set** 
   + **Training**: Sourced from the training set of data. 70% of subjects were randomly selected for the training set.
   + **Test**: Sourced from the test set of data. The remainder 30% of subjects were assigned to this set.
-
-**Value range**: 1 to 30
 
 Value|Source Data Set|Value|Source Data Set|Value|Source Data Set
 ---|---|---|---|---|---
@@ -28,8 +28,32 @@ Value|Source Data Set|Value|Source Data Set|Value|Source Data Set
 ---
 ####Activity
 
++ **Description**: Different activities performed while wearing the smartphone. Conditions were manually assigned to the segments of data to which they were performed.
++ **Type**: Character
++ **Value**: Type of activity performed
+
+Value|Description
+WALKING|Data gathered during normal walking conditions
+WALKING_UPSTAIRS|Data gathered while walking upstairs
+WALKING_DOWNSTAIRS|Data gatheres while walking downstairs
+SITTING|Data gatheres while sitting
+STANDING|Data gathered while standing
+LAYING |Data gathered while laying down
+
+**Processed Data Notes**
+*tidyMean.txt* will contain a single mean value for each activity per subject.
+*tidyData.txt* will contain the full gathered dataset. Activities will cover the full time series of the variables associated with them.
+
 ---
 ####tBodyAcc.mean.X
+
++ **Description**: Mean variables from the time domain body acceleration data along the X axis of the accelerometer 
++ **Type**: numeric
++ **Value**
+  + **tidyData.txt**: Magnitude
+  + **tidyMean.txt**: Average magnitude for activity
++ **Value Range**: -1:1 (normalized)
++ **Capture Frequency**: 50 Hz
 
 ---
 ####tBodyAcc.mean.Y
