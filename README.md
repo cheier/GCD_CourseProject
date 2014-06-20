@@ -71,8 +71,9 @@ In this part of the process, all supporting data is loaded prior to the main dat
         activityLabels <- read.table("./UCI HAR Dataset/activity_labels.txt",
                                      colClasses = "character")
 
-The *Features* data is then modified in order to rename *meanFreq* to *mFreq* in order to prevent the *meanFreq* features from being picked up in a text based search. The use of all round brackets are also removed. These among dashes are illegal characters in R, however, with the curly brackets, column names will include "..." within them. By eliminating the brackets, the dots are limited to 1 where dashes exist. I considered this to be acceptable in the column naming.
+The *Features* data is then modified in order to rename *meanFreq* to *mFreq* in order to prevent the *meanFreq* features from being picked up in a text based search. The use of all round brackets are also removed. These among dashes are illegal characters in R, however, with the curly brackets, column names will include "..." within them. By eliminating the brackets, the dots are limited to 1 where dashes exist. I considered this to be acceptable in the column naming. There is also an error in the source data where some feature labels repeat "Body" twice. This is fixed for consistency.
 
+        features[,2] = gsub("BodyBody", "Body", features[,2])
         features[,2] = gsub("meanFreq", "mFreq", features[,2])
         features[,2] = gsub("[(][)]", "", features[,2])
         
