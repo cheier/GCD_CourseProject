@@ -1,5 +1,7 @@
 run_analysis <- function() {
         
+        library(reshape2)
+        
         ## Checks if source file directory exists. If not, then the
         ## file is downloaded and unzipped.
         
@@ -24,8 +26,10 @@ run_analysis <- function() {
                                      colClasses = "character")
         
         ## Reformat column names to reduce instances of illegal characters
-        ## Rename 
+        ## Rename meanFreq to mFreq and fix mistake in original data with 
+        ## double "Body" identifiers on some columns
         
+        features[,2] = gsub("BodyBody", "Body", features[,2])
         features[,2] = gsub("meanFreq", "mFreq", features[,2])
         features[,2] = gsub("[(][)]", "", features[,2])
         

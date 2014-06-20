@@ -2,19 +2,66 @@ Codebook
 ========
 This document provides additional information on the individual variables contained within the datasets that are written out by the run_analysis() function. For more information on this function, consult the README.md file contained in this package.
 
-Source Data
------------
+About the Source Data
+---------------------
 + **Organization**: University of California, Irvine - Center for Machine Learning and Intelligent Systems
 + **Project Site**: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
-Detail overview as of 6/19/2014 at 23:14 MDT
----|---|---|---|---|---
-Data Set Characteristics: |Multivariate, Time-Series|Number of Instances:|10299|Area:|Computer
-Attribute Characteristics:|N/A|Number of Attributes:|561|Date Donated|2012-12-10
-Associated Tasks:|Classification, Clustering|Missing Values?|N/A|Number of Web Hits:|92762
+####Detail Overview
+
++ **Data Set Characteristics**: Multivariate, Time-Series
++ **Number of Instances**: 10299
++ **Area**: Computer
++ **Attribute Characteristics**: N/A
++ **Number of Attributes**: 561
++ **Date Donated**: 2012-12-10
++ **Associated Tasks**: Classification, Clustering
++ **Missing Values**: N/A
+
+Source data can be automatically downloaded through the run_analysis() function. Alternatively, the data can be downloaded from the project site at the following link:
+
+http://archive.ics.uci.edu/ml/machine-learning-databases/00240/
+
+####Features
+For more information on the features in the data, refer to the **features_info.txt** document in the source data. The following is an overview of the processing done on the source data.
+
++ **Smartphone data source**: Accelerometer and gyroscope
++ **Pre-filter**
+  + Median filter
+  + 3rd order Butterworth filter with 20 Hz corner frequency
+  + Low pass Butterworth filter at 0.3 Hz (separate Body and Gravity signals)
+  + Fast Forier Transform (frequency domain signals only)
+
+Data Cleaning Process
+---------------------
+The training and test data sets from the source are merged with labels, subject and activity IDs to create the tidy data set references in this codebook. This process is high level. For more details, refer to the README.md file contained in this project.
+
+1. Appended data in features.txt to the top of the data in X_train.txt and X_test.txt.
+2. Extracted variables from X_train.txt and X_test.txt related to mean() and std(). Data is organized to have all mean() grouped next to the std() data.
+3. Appended the activity numbers from subject_test.txt and subject_train.txt to the front of the test and train data.
+4. Appended the subject numbers from y_test.txt and y_train.txt to the front of the test and train data.
+5. Rename Activity values using activity_labels.txt as a lookup table.
+6. Merge rows of the test and training datasets together.
+7. Sort all data by Subject value. Save data as **tidyData.txt**.
+8. Generate average of each variable for each activity and each subject. Save data as **tidyMean.txt**.
+
+About the Output Data
+---------------------
+#### tidyData.txt
+
++ **Description**: Contains time and frequency domain data for all subjects and activities.
++ **Observations**: 10299
++ **Variables**: 68
+
+#### tidyMean.txt
+
++ **Description**: Contains average data of time and frequency domain variables for each activity for each subject.
++ **Observations**: 180
++ **Variables**: 68
 
 Variables
 ---------
+All variables in this codebook are relevant to both **tidyData.txt** and **tidyMean.txt**. Any differences between the two sets are specified within the indivitual variables.
 ---
 ####Subject
 
@@ -753,7 +800,7 @@ LAYING |Data gathered while laying down
 + **Capture Frequency**: 50 Hz
 
 ---
-####fBodyBodyAccJerkMag.std
+####fBodyAccJerkMag.std
 
 + **Description**: Standard deviation data gathered from the magnitude of jerk derived from the frequency domain body data of the accelerometer 
 + **Type**: numeric
@@ -764,7 +811,7 @@ LAYING |Data gathered while laying down
 + **Capture Frequency**: 50 Hz
 
 ---
-####fBodyBodyGyroMag.std
+####fBodyGyroMag.std
 
 + **Description**: Standard deviation data gathered from the magnitude derived from the frequency domain body data of the gyroscope 
 + **Type**: numeric
@@ -775,7 +822,7 @@ LAYING |Data gathered while laying down
 + **Capture Frequency**: 50 Hz
 
 ---
-####fBodyBodyGyroJerkMag.std
+####fBodyGyroJerkMag.std
 
 + **Description**: Standard deviation data gathered from the magnitude of jerk derived from the frequency domain body data of the gyroscope 
 + **Type**: numeric
