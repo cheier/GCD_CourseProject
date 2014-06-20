@@ -33,6 +33,7 @@ Value|Source Data Set|Value|Source Data Set|Value|Source Data Set
 + **Value**: Type of activity performed
 
 Value|Description
+---|---
 WALKING|Data gathered during normal walking conditions
 WALKING_UPSTAIRS|Data gathered while walking upstairs
 WALKING_DOWNSTAIRS|Data gatheres while walking downstairs
