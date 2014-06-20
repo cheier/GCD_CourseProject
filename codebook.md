@@ -2,7 +2,15 @@ Codebook
 ========
 
 ---
-**Subject**
+####Subject
+
++**Description**: Volunteer test subjects between the ages of 19 and 48.
++**Value**: ID number assigned to inidividual volunteer
++**Data set** 
+..+**Training**: Sourced from the training set of data. 70% of subjects were randomly selected for the training set.
+..+**Test**: Sourced from the test set of data. The remainder 30% of subjects were assigned to this set.
+
+**Value range**: 1 to 30
 
 Value|Data set|Value|Data set|Value|Data set
 ---|---|---|---|---|---
@@ -18,8 +26,9 @@ Value|Data set|Value|Data set|Value|Data set
 10|Test|20|Test|30|Training
 
 ---
-Activity
+####Activity
 
+---
 tBodyAcc.mean.X
 
 tBodyAcc.mean.Y
