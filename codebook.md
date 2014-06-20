@@ -4,38 +4,18 @@ Codebook
 ---
 **Subject**
 
-Value|Data set
----|---
-1|Training
-2|Test
-3|Training
-4|Test
-5|Training
-6|Training
-7|Training
-8|Training
-9|Test
-10|Test
-11|Training
-12|Test
-13|Test
-14|Training
-15|Training
-16|Training
-17|Training
-18|Test
-19|Training
-20|Test
-21|Training
-22|Training
-23|Training
-24|Test
-25|Training
-26|Training
-27|Training
-28|Training
-29|Training
-30|Training
+Value|Data set|Value|Data set|Value|Data set
+---|---|---|---|---|---
+1|Training|11|Training|21|Training
+2|Test|12|Test|22|Training
+3|Training|13|Test|23|Training
+4|Test|14|Training|24|Test
+5|Training|15|Training|25|Training
+6|Training|16|Training|26|Training
+7|Training|17|Training|27|Training
+8|Training|18|Test|28|Training
+9|Test|19|Training|29|Training
+10|Test|20|Test|30|Training
 
 ---
 Activity
