@@ -61,8 +61,8 @@ About the Output Data
 
 Variables
 ---------
-
 All variables in this codebook are relevant to both **tidyData.txt** and **tidyMean.txt**. Any differences between the two sets are specified within the indivitual variables.
+
 ---
 ####Subject
 
